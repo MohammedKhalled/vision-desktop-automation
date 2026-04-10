@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Offline Post One",
+    "body": "This content was loaded from a local fallback source."
+  },
+  {
+    "id": 2,
+    "title": "Offline Post Two",
+    "body": "Graceful degradation ensures the automation still runs."
+  }
+]
