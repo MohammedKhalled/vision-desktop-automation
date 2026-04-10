@@ -1,0 +1,8 @@
+botcity-framework-core
+pyautogui
+opencv-python
+requests
+pygetwindow
+numpy
+pillow
+pytesseract
