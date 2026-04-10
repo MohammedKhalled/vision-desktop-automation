@@ -35,7 +35,6 @@ env/
 .DS_Store
 
 # BotCity
-resources/
 .botcity/
 *.db
 
