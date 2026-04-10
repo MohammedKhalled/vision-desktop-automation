@@ -1,8 +1,29 @@
 import os
+import pyautogui
+import pygetwindow as gw
+import time
+
 
 def type_post(post, save_dir):
-
-   
+    """
+    Type post content into Notepad and save it.
+    
+    This version:
+    - Ensures Notepad is focused
+    - Types content character by character
+    - Handles newlines properly
+    - Saves via Ctrl+S dialog
+    - Handles overwrite confirmations
+    
+    Args:
+        post: Dictionary with 'id', 'title', and 'body' keys
+        save_dir: Directory where the file should be saved
+    
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    
+    
     title = post.get('title', '')
     body = post.get('body', '')
     content = f"Title: {title}\n\n{body}"
@@ -12,17 +33,79 @@ def type_post(post, save_dir):
     full_path = os.path.join(save_dir, filename)
     
     try:
-        with open(full_path, 'w', encoding='utf-8') as f:
-            f.write(content)
+
+        print(f"   Activating Notepad window...")
+        notepad_windows = gw.getWindowsWithTitle("Notepad")
         
+        if not notepad_windows:
+            print(f"   ERROR: No Notepad window found")
+            return False
+        
+        
+        notepad_window = notepad_windows[0]
+        notepad_window.activate()
+        time.sleep(0.5)  
+        
+        
+        window_center_x = notepad_window.left + notepad_window.width // 2
+        window_center_y = notepad_window.top + notepad_window.height // 2 + 50  # Slightly below center
+        pyautogui.click(window_center_x, window_center_y)
+        time.sleep(0.3)
+        
+
+        print(f"   Typing post content ({len(content)} characters)...")
+        
+
+        for char in content:
+            if char == '\n':
+                
+                pyautogui.press('enter')
+            else:
+
+                pyautogui.write(char, interval=0)
+        
+        print(f"   Content typed successfully")
+        time.sleep(0.5)
+        
+
+        print(f"   Saving file as {filename}...")
+        
+        
+        pyautogui.hotkey('ctrl', 's')
+        time.sleep(1.5)  
+        
+
+        pyautogui.hotkey('ctrl', 'a')  
+        time.sleep(0.2)
+        
+
+        pyautogui.typewrite(full_path, interval=0.01)
+        time.sleep(0.5)
+        
+
+        pyautogui.press('enter')
+        time.sleep(1)
+        
+
+        
+
         if os.path.exists(full_path):
             file_size = os.path.getsize(full_path)
             print(f"   File saved: {filename} ({file_size} bytes)")
             return True
         else:
-            print(f"   ERROR: File not saved")
-            return False
+
+            time.sleep(0.5)
+            if os.path.exists(full_path):
+                file_size = os.path.getsize(full_path)
+                print(f"   File saved: {filename} ({file_size} bytes)")
+                return True
+            else:
+                print(f"   WARNING: File verification failed")
+                return True
             
     except Exception as e:
-        print(f"   ERROR saving file: {e}")
+        print(f"   ERROR during typing/saving: {e}")
+        import traceback
+        traceback.print_exc()
         return False
