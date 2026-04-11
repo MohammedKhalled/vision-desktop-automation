@@ -5,25 +5,7 @@ import time
 
 
 def type_post(post, save_dir):
-    """
-    Type post content into Notepad and save it.
-    
-    This version:
-    - Ensures Notepad is focused
-    - Types content character by character
-    - Handles newlines properly
-    - Saves via Ctrl+S dialog
-    - Handles overwrite confirmations
-    
-    Args:
-        post: Dictionary with 'id', 'title', and 'body' keys
-        save_dir: Directory where the file should be saved
-    
-    Returns:
-        bool: True if successful, False otherwise
-    """
-    
-    
+
     title = post.get('title', '')
     body = post.get('body', '')
     content = f"Title: {title}\n\n{body}"

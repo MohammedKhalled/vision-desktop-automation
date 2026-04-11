@@ -5,4 +5,3 @@ requests
 pygetwindow
 numpy
 pillow
-pytesseract
