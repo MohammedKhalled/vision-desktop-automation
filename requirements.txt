@@ -5,3 +5,5 @@ requests
 pygetwindow
 numpy
 pillow
+google-genai
+python-dotenv

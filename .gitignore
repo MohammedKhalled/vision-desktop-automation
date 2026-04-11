@@ -38,6 +38,9 @@ env/
 .botcity/
 *.db
 
+# Environment / secrets
+.env
+
 # Project Specific
 Desktop/tjm-project/
 screenshots/temp/
