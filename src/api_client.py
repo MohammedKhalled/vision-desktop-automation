@@ -16,7 +16,7 @@ def fetch_posts(limit=10):
     except Exception as e:
         print(f"API unavailable, using fallback data: {e}")
 
-        fallback_path = Path(__file__).parent / "fallback_posts.json"
+        fallback_path = Path(__file__).parent.parent / "data" / "fallback_posts.json"
         with open(fallback_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 

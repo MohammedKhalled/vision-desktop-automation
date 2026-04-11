@@ -11,7 +11,7 @@ class IconGrounder(DesktopBot):
         for _ in range(RETRY_ATTEMPTS):
             location = self.find(
                 "notepad_icon",
-                matching=0.70,      
+                matching=0.70,
                 waiting_time=1000
             )
 

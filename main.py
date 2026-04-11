@@ -1,12 +1,13 @@
-from src.vision.icon_grounding import IconGrounder
-from src.services.posts_api import fetch_posts
-from src.automation.notepad import (
+from src.icon_grounding import IconGrounder
+from src.api_client import fetch_posts
+from src.notepad import (
     open_notepad_at,
     close_notepad,
-    fallback_launch_notepad
+    fallback_launch_notepad,
+    type_post,
+    get_desktop_project_dir,
+    cleanup_previous_posts,
 )
-from src.automation.typing import type_post
-from src.utils.paths import get_desktop_project_dir, cleanup_previous_posts
 from src.config import POST_LIMIT
 
 

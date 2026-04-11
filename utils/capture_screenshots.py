@@ -1,8 +1,8 @@
 import cv2
 import os
 from datetime import datetime
-from src.vision.icon_grounding import IconGrounder
-from src.vision.screenshot import capture_desktop
+from src.icon_grounding import IconGrounder
+from utils.screenshot import capture_desktop
 
 
 def annotate_screenshot(img, icon_coords, position_name, output_dir):
